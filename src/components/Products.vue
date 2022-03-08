@@ -39,7 +39,12 @@ export default {
     },
     created(){
       eventBus.$on("productAdded", (product) => {
+        if (this.productList.length < 10 ) {
         this.productList.push(product); 
+          eventBus.$emit("progressbarUpdated",this.productList.length);
+        }else{
+          alert("Ürün sepete eklenemez");
+        }
       });
     }
 };
